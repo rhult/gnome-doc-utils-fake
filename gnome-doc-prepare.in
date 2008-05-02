@@ -1,6 +1,6 @@
 #! /bin/sh
 # gnome-doc-prepare - Prepare a package to use gnome-doc-utils.
-# gnome-doc-prepare.  Generated from gnome-doc-prepare.in by configure.
+# @configure_input@
 # Copyright (C) 1996-1999 Free Software Foundation, Inc.
 # Copyright (C) 2001 Eazel, Inc.
 # Copyright (C) 2004 Danilo Segan <danilo@gnome.org>.
@@ -35,14 +35,14 @@ progname=`echo "$0" | sed 's%^.*/%%'`
 
 # Constants.
 PROGRAM=gnome-doc-prepare
-PACKAGE=gnome-doc-utils
-VERSION=0.7.1
+PACKAGE=@PACKAGE@
+VERSION=@VERSION@
 
 # Directory names.
 prefix=@prefix@
 datarootdir=@datarootdir@
-datadir=${prefix}/share
-pkgdatadir=${prefix}/share/gnome-doc-utils
+datadir=@datadir@
+pkgdatadir=@datadir@/gnome-doc-utils
 
 # FIXME: I want this through pkg-config
 gdu_m4="${datadir}/aclocal/gnome-doc-utils.m4"
@@ -139,7 +139,7 @@ EOF
     ;;
 
   *)
-    if [ "x$docname" == "xyes" ]
+    if [ "x$docname" = "xyes" ]
     then
       newdocument="$arg" 
       docname=no
