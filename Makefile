@@ -10,6 +10,9 @@ all:
 clean:
 	@echo "Nothing to clean."
 
+check:
+	@echo "Nothing to check."
+
 install:
 	@mkdir -p $(JHBUILD_PREFIX)/share/gnome-doc-utils
 	cp gnome-doc-utils.make $(JHBUILD_PREFIX)/share/gnome-doc-utils
