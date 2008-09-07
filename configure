@@ -1,3 +1,56 @@
 #!/bin/sh
 
-# Do nothing...
+# Parsing command line arguments
+help=no
+prefix=
+
+function print_help {
+	echo "Usage:"
+	echo "  $0 [--prefix=<prefix>] [--help]"
+}
+
+while test $# != 0; do
+	case "$1" in
+	--help)
+		help=yes
+		;;
+	--prefix=*)
+		prefix=${1/--prefix=/}
+		;;
+	*)
+		echo "Invalid argument $1" >&2
+		echo >&2
+		print_help >&1
+		exit 1
+		;;
+	esac
+	shift
+done
+
+# Display help and quit, if asked for
+if test "x${help}" == "xyes"; then
+	print_help
+	exit 0
+fi
+
+# Check prefix
+echo -n "Checking for specified prefix... "
+if test -z "${prefix}"; then
+	prefix="/usr/local"
+	echo "none (using ${prefix})"
+else
+	echo "${prefix}"
+fi
+
+echo -n "Creating config.status"
+echo '#!/bin/sh' > config.status
+echo >> config.status
+echo 'if test $# != 1; then echo "Usage: $0 <filename>"; exit 1; fi' >> config.status
+echo "sed 's-@@PREFIX@@-${prefix}-' \$1.in > \$1 || rm -f \$1" >> config.status
+chmod +x config.status
+echo
+
+echo -n "Creating Makefile"
+./config.status Makefile
+echo
+
