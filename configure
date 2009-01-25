@@ -17,6 +17,10 @@ while test $# != 0; do
 	--prefix=*)
 		prefix=${1/--prefix=/}
 		;;
+	--prefix)
+		prefix=$2
+		shift
+		;;
 	*)
 		echo "Invalid argument $1" >&2
 		echo >&2
