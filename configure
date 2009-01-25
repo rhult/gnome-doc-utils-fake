@@ -22,10 +22,10 @@ while test $# != 0; do
 		shift
 		;;
 	*)
-		echo "Invalid argument $1" >&2
+		echo "Unknown argument $1" >&2
 		echo >&2
-		print_help >&1
-		exit 1
+		# Ignore errors, as the jhbuild setup might pass lots
+                # of different arguments here
 		;;
 	esac
 	shift
