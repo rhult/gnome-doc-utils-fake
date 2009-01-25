@@ -1,0 +1,5 @@
+This is a "fake" version of gnome-doc-utils that makes it possible to
+build packages requiring gnome-doc-utils but with documentation
+disabled.
+
+The real version is available on GNOME's repository.
