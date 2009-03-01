@@ -50,7 +50,7 @@ echo -n "Creating config.status"
 echo '#!/bin/sh' > config.status
 echo >> config.status
 echo 'if test $# != 1; then echo "Usage: $0 <filename>"; exit 1; fi' >> config.status
-echo "sed 's-@@PREFIX@@-${prefix}-' \$1.in > \$1 || rm -f \$1" >> config.status
+echo "sed 's!@@PREFIX@@!${prefix}!' \$1.in > \$1 || rm -f \$1" >> config.status
 chmod +x config.status
 echo
 
